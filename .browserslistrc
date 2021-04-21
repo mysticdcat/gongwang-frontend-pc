@@ -1,0 +1,9 @@
+> 0.5%
+iOS >= 8
+Android >= 4
+not edge <= 100
+not ie <= 100
+not firefox <= 100
+not opera <= 100
+not OperaMini all
+not dead

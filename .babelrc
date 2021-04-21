@@ -1,0 +1,45 @@
+{
+    "presets":["es2015", "stage-2"],
+    "plugins":[
+        "transform-runtime",
+        "transform-object-rest-spread",
+        "syntax-dynamic-import",
+        "transform-vue-jsx"
+    ],
+    "comments": false,
+    "env": {
+        "production":{
+            "plugins": [
+                "transform-remove-console",
+                "transform-remove-debugger",
+                "syntax-dynamic-import"
+            ]
+        }
+    }
+}
+// {
+//     "presets":[
+//         [
+//             "@babel/preset-env",
+//             {
+//                 "useBuiltIns":"usage",
+//                 "corejs":"3"
+//             }
+//         ]
+//     ],
+//     "plugins": [
+//         "@babel/plugin-transform-runtime",
+//         "@babel/plugin-syntax-dynamic-import",
+//         "@babel/plugin-proposal-object-rest-spread"
+//     ],
+//     "comments": false,
+//     "env": {
+//         "production": {
+//             "plugins": [
+//                 "transform-remove-console",
+//                 "transform-remove-debugger",
+//                 "@babel/plugin-syntax-dynamic-import"
+//             ]
+//         }
+//     }
+// }

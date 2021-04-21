@@ -1,0 +1,50 @@
+* {
+    font-family: PingFangSC-Regular,Helvetica,HelveticaNeue,Arial,Verdana,Sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    text-size-adjust: 100%;
+    touch-action: manipulation;
+    color: rgba(255, 255, 255, 0.85);
+    backface-visibility:hidden;
+    // perspective:1000;
+    font-size: 12px;
+    color:#141922
+}
+
+html * {
+    text-size-adjust: none;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    // overflow-x: hidden;
+    font-size: 12px;
+    -webkit-overflow-scrolling:touch;
+}
+div {
+    box-sizing: border-box;
+}
+button {
+    border: none;
+    outline: none;
+  }
+
+::-webkit-scrollbar{
+    width:0px;
+    -webkit-appearance: none;
+    display: none;
+    height:0px
+}
+
+::-webkit-scrollbar-thumb{
+    // border-radius:5px;/*no*/
+    // box-shadow:inset 0 0 5px rgba(0,0,0,.2);
+    // background:rgba(0,0,0,.2)
+}
