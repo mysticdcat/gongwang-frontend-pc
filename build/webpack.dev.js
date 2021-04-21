@@ -72,13 +72,7 @@ module.exports = {
                                     })
                                 ]
                             }
-                        }, {
-                                loader: 'px2rem-loader',
-                                options: {
-                                    remUnit: 37.5,
-                                    remPrecision: 8
-                                }
-                            }, 'sass-loader']
+                        }, 'sass-loader']
                     }
                 }
             },
@@ -93,13 +87,7 @@ module.exports = {
                             })
                         ]
                     }
-                }, {
-                        loader: 'px2rem-loader',
-                        options: {
-                            remUnit: 37.5,
-                            remPrecision: 8
-                        }
-                    }, 'sass-loader']
+                },'sass-loader']
             },
             {
                 test: /\.js(x)?$/,

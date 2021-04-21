@@ -7,60 +7,6 @@
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
-    <script>
-        console.log([
-
-"                   _ooOoo_",
-"                  o8888888o",
-"                  88\" . \"88",
-"                  (| -_- |)",
-"                  O\\  =  /O",
-"               ____/`---'\\____",
-"             .'  \\\\|     |//  `.",
-"            /  \\\\|||  :  |||//  \\",
-"           /  _||||| -:- |||||-  \\",
-"           |   | \\\\\\  -  /// |   |",
-"           | \\_|  ''\\---/''  |   |",
-"           \\  .-\\__  `-`  ___/-. /",
-"         ___`. .'  /--.--\\  `. . __",
-"      .\"\" '<  `.___\\_<|>_/___.'  >'\"\".",
-"     | | :  `- \\`.;`\\ _ /`;.`/ - ` : | |",
-"     \\  \\ `-.   \\_ __\\ /__ _/   .-` /  /",
-"======`-.____`-.___\\_____/___.-`____.-'======",
-"                   `=---='",
-"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
-"         佛祖保佑       永无BUG"
-].join('\n'));
-    </script>
-    <script>${ require('raw-loader!babel-loader!./node_modules/lib-flexible') }</script>
-    <script>
-        ; (function (win) {
-            var docEl = win.document.documentElement,
-                tid;
-
-            function refreshRem() {
-                var width = docEl.getBoundingClientRect().width;
-                var rem = width / 10;
-                docEl.style.fontSize = rem + "px";
-                var actualSize = parseFloat(window.getComputedStyle(docEl)["font-size"]);
-                if (actualSize !== rem) {
-                    var remScaled = rem / (actualSize / rem);
-                    docEl.style.fontSize = remScaled + "px"
-                }
-            }
-
-            function dbcRefresh() {
-                clearTimeout(tid);
-                tid = setTimeout(refreshRem, 100)
-            }
-
-            win.addEventListener("resize", function () { dbcRefresh() }, false);
-            win.addEventListener("pageshow", function (e) {
-                if (e.persisted) { dbcRefresh() }
-            }, false);
-            refreshRem();
-        })(window);
-    </script>
 </head>
 
 <body>
