@@ -1,5 +1,6 @@
 <template>
   <div id="home">
+    <header class="header-wrapper"></header>
     <div class="main-wrapper">
       <div class="left-container">
         <div class="chart-wrapper">
@@ -10,20 +11,83 @@
           <p class="title">美丽庭院</p>
           <div class="chart-container"><myChart :options="lineOption" /></div>
         </div>
-        <div class="chart-wrapper">
+        <div class="chart-wrapper volunteer-wrapper">
           <p class="title">志愿</p>
+          <div class="table-wrapper">
+            <div class="table-header">
+              <div class="table-item">村民</div>
+              <div class="table-item">活动名称</div>
+              <div class="table-item">获得积分</div>
+              <div class="table-item">活动时间</div>
+            </div>
+            <div class="table-body">
+              <div class="table-body-r" v-for="item in 6" :key="item">
+                <div class="table-item">王得按</div>
+                <div class="table-item">垃圾环境治理垃圾环境治理</div>
+                <div class="table-item">56</div>
+                <div class="table-item">2021.04.02</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="center-container"></div>
+      <div class="center-container">
+        <div class="map-wrapper"></div>
+        <div class="chart-wrapper volunteer-wrapper">
+          <p class="title">实时垃圾分类数据</p>
+          <div class="table-wrapper">
+            <div class="table-header">
+              <div class="table-item">村庄</div>
+              <div class="table-item">门牌号</div>
+              <div class="table-item">获得积分</div>
+              <div class="table-item">活动时间</div>
+              <div class="table-item">活动时间</div>
+              <div class="table-item">门牌号</div>
+              <div class="table-item">获得积分</div>
+              <div class="table-item">活动时间</div>
+              <div class="table-item">活动时间</div>
+            </div>
+            <div class="table-body">
+              <div class="table-body-r" v-for="item in 6" :key="item">
+                <div class="table-item">黄山善</div>
+                <div class="table-item">100</div>
+                <div class="table-item">184</div>
+                <div class="table-item">89</div>
+                <div class="table-item">6</div>
+                <div class="table-item">100</div>
+                <div class="table-item">184</div>
+                <div class="table-item">89</div>
+                <div class="table-item">6</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="right-container">
         <div class="chart-wrapper">
           <p class="title">激励运用</p>
+          <div class="chart-container"><myChart :options="barOptions" /></div>
         </div>
-        <div class="chart-wrapper">
+        <div class="chart-wrapper volunteer-wrapper">
           <p class="title">党员引领</p>
-        </div>
-        <div class="chart-wrapper">
-          <p class="title">曝光台</p>
+          <div class="table-wrapper">
+            <div class="table-header">
+              <div class="table-item">党员名</div>
+              <div class="table-item">活动名称</div>
+              <div class="table-item">获得积分</div>
+              <div class="table-item">活动时间</div>
+              <div class="table-item">活动时间</div>
+            </div>
+            <div class="table-body">
+              <div class="table-body-r" v-for="item in 6" :key="item">
+                <div class="table-item">黄山善</div>
+                <div class="table-item">100</div>
+                <div class="table-item">184</div>
+                <div class="table-item">89</div>
+                <div class="table-item">6</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -96,10 +160,10 @@ export default {
         },
         legend: {
           data: ["绿码用户", "黄码用户", "红码用户"],
-          top:5,
-          textStyle:{
-            color:"#FFFFFF",
-            fontSize:12
+          top: 5,
+          textStyle: {
+            color: "#FFFFFF",
+            fontSize: 12,
           },
         },
         grid: {
@@ -121,20 +185,36 @@ export default {
             name: "绿码用户",
             type: "line",
             stack: "总量",
-            data: [120, 132, 101, 134, 90, 230, 210,132],
+            data: [120, 132, 101, 134, 90, 230, 210, 132],
           },
           {
             name: "黄码用户",
             type: "line",
             stack: "总量",
-            data: [220, 182, 191, 234, 290, 330, 310,132],
+            data: [220, 182, 191, 234, 290, 330, 310, 132],
           },
           {
             name: "红码用户",
             type: "line",
             stack: "总量",
-            data: [150, 232, 201, 154, 190, 330, 410,132],
-          }
+            data: [150, 232, 201, 154, 190, 330, 410, 132],
+          },
+        ],
+      },
+      barOptions: {
+        xAxis: {
+          type: "category",
+          data: ["表彰", "信用贷", "奖金", "补偿", "其他"],
+        },
+        yAxis: {
+          type: "value",
+        },
+        color: ["red", "#F2A01D", "#FF1A1A", "#F2A01D", "#FF1A1A"],
+        series: [
+          {
+            data: [120, 200, 150, 80, 70],
+            type: "bar",
+          },
         ],
       },
     };
@@ -149,9 +229,16 @@ export default {
   width: 1920px;
   background-size: 100% 100%;
   background-image: url("~@/images/home-bg.png");
+  .header-wrapper {
+    height: 86px;
+    width: 100%;
+    background-size: 100% 100%;
+    background-image: url("~@/images/header-bg.png");
+  }
   .main-wrapper {
     display: flex;
     justify-content: center;
+    padding-top: 20px;
     .chart-wrapper {
       width: 100%;
       height: 314px;
@@ -170,7 +257,45 @@ export default {
         text-shadow: 0px 11px 16px #3957a3;
       }
       .chart-container {
-        height: 274px;
+        height: calc(100% - 50px);
+      }
+    }
+    .volunteer-wrapper {
+      height: 330px;
+    }
+    .table-wrapper {
+      width: 100%;
+      padding: 10px 14px;
+
+      .table-header,
+      .table-body-r {
+        width: 100%;
+        display: flex;
+        .table-item {
+          flex: 1;
+          text-align: center;
+          font-size: 14px;
+          line-height: 40px;
+          font-family: PingFang;
+          font-weight: bold;
+          color: #ffffff;
+          padding: 0 3px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+      .table-header {
+        background: #1b5ad1;
+        height: 40px;
+      }
+      .table-body-r {
+        height: 36px;
+        .table-item {
+          font-size: 12px;
+          line-height: 36px;
+          font-weight: normal;
+        }
       }
     }
     .left-container {
@@ -179,6 +304,11 @@ export default {
     .center-container {
       width: 913px;
       margin: 0 3px;
+      .map-wrapper {
+        width: 100%;
+        height: 620px;
+        margin-bottom: 10px;
+      }
     }
     .right-container {
       width: 480px;
