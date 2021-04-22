@@ -32,7 +32,22 @@
         </div>
       </div>
       <div class="center-container">
-        <div class="map-wrapper"></div>
+        <div class="map-wrapper">
+          <div class="map-opreate">
+            <div class="map-opreate-item">
+              <img class="icon" src="~@/images/dear-icon.png" alt="" />
+              <span>处理站</span>
+            </div>
+            <div class="map-opreate-item">
+              <img class="icon" src="~@/images/checked-icon.png" alt="" />
+              <span>收集点</span>
+            </div>
+            <div class="map-opreate-item">
+              <img class="icon" src="~@/images/car-icon.png" alt="" />
+              <span>车辆</span>
+            </div>
+          </div>
+        </div>
         <div class="chart-wrapper volunteer-wrapper">
           <p class="title">实时垃圾分类数据</p>
           <div class="table-wrapper">
@@ -89,19 +104,33 @@
             </div>
           </div>
         </div>
+        <div class="chart-wrapper">
+          <p class="title">激励运用</p>
+          <div class="chart-container swipper-container">
+            <mySwiper :list="[{}, {}, {}]" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
 import myChart from "components/my-chart/index";
+import mySwiper from "components/my-swiper/index";
+
 export default {
   name: "hello",
   components: {
     myChart,
+    mySwiper,
   },
   data() {
     return {
+      swiperOption: {
+        //swiper3
+        autoplay: 3000,
+        speed: 1000,
+      },
       pieOptions: {
         tooltip: {
           trigger: "item",
@@ -220,7 +249,26 @@ export default {
     };
   },
 
-  methods: {},
+  methods: {
+    initMap() {
+      // 获取到作为地图容器的DOM元素
+      const container = document.querySelector(".map-wrapper");
+
+      // 创建地图实例
+      const map = new AMap.Map(container, {
+        center: [117.000923, 36.675807],
+        zoom: 5,
+      });
+      // 往地图里加入更多元素（如点标记）
+      const marker = new AMap.Marker({
+        map: map,
+        center: [117.000923, 36.675807],
+      });
+    },
+  },
+  mounted() {
+    this.initMap();
+  },
 };
 </script>
 <style lang="scss">
@@ -258,6 +306,11 @@ export default {
       }
       .chart-container {
         height: calc(100% - 50px);
+      }
+      .swipper-item {
+        width: 100%;
+        height: 270px;
+        background-color: pink;
       }
     }
     .volunteer-wrapper {
@@ -308,6 +361,36 @@ export default {
         width: 100%;
         height: 620px;
         margin-bottom: 10px;
+        position: relative;
+        
+        .map-opreate {
+          position: absolute;
+          left: 2px;
+          z-index: 10;
+          bottom: 2px;
+          width: 140px;
+          height: 130px;
+          background: rgba(24, 82, 193, 0.6);
+          padding: 20px 20px 0;
+
+           .map-opreate-item {
+             display: flex;
+             align-items: center;
+             margin-bottom: 15px;
+           }
+          .icon {
+            width: 15px;
+            height: 19px;
+          }
+          span {
+            padding-left: 7px;
+            vertical-align: middle;
+            font-size: 14px;
+            font-family: PingFang;
+            font-weight: bold;
+            color: #ffffff;
+          }
+        }
       }
     }
     .right-container {
