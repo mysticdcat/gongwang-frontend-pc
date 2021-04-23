@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <header class="header-wrapper"></header>
+    <home-header></home-header>
     <div class="main-wrapper">
       <div class="left-container">
         <div class="chart-wrapper">
@@ -93,12 +93,13 @@
 <script>
 import myChart from "components/my-chart/index";
 import mySwiper from "components/my-swiper/index";
-
+import homeHeader from "./components/home-header"
 export default {
   name: "hello",
   components: {
     myChart,
     mySwiper,
+    homeHeader
   },
   data() {
     return {
