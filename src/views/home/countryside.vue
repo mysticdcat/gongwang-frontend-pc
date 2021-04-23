@@ -5,7 +5,7 @@
       <div class="left-container">
         <div class="chart-wrapper">
           <p class="title">平安家庭</p>
-          <div class="chart-container"><myChart :options="barOptions" /></div>
+          <div class="chart-container"><myChart :options="pieOptions" /></div>
         </div>
         <div class="chart-wrapper">
           <p class="title">美丽庭院</p>
@@ -50,26 +50,17 @@
         </div>
         <div class="chart-wrapper volunteer-wrapper">
           <p class="title">实时垃圾分类数据</p>
-        </div>
-      </div>
-      <div class="right-container">
-        <div class="chart-wrapper">
-          <p class="title">激励运用</p>
-          <div class="chart-container"><myChart :options="barOptions" /></div>
-        </div>
-        <div class="chart-wrapper volunteer-wrapper">
-          <p class="title">党员引领</p>
-          <div class="chart-container"><myChart :options="barOptions" /></div>
-        </div>
-        <div class="chart-wrapper">
-          <p class="title">激励运用</p>
           <div class="table-wrapper">
             <div class="table-header">
               <div class="table-item">村庄</div>
               <div class="table-item">门牌号</div>
-              <div class="table-item">村民</div>
-              <div class="table-item">图片</div>
               <div class="table-item">获得积分</div>
+              <div class="table-item">活动时间</div>
+              <div class="table-item">活动时间</div>
+              <div class="table-item">门牌号</div>
+              <div class="table-item">获得积分</div>
+              <div class="table-item">活动时间</div>
+              <div class="table-item">活动时间</div>
             </div>
             <div class="table-body">
               <div class="table-body-r" v-for="item in 6" :key="item">
@@ -84,6 +75,39 @@
                 <div class="table-item">6</div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-container">
+        <div class="chart-wrapper">
+          <p class="title">激励运用</p>
+          <div class="chart-container"><myChart :options="barOptions" /></div>
+        </div>
+        <div class="chart-wrapper volunteer-wrapper">
+          <p class="title">党员引领</p>
+          <div class="table-wrapper">
+            <div class="table-header">
+              <div class="table-item">党员名</div>
+              <div class="table-item">活动名称</div>
+              <div class="table-item">获得积分</div>
+              <div class="table-item">活动时间</div>
+              <div class="table-item">活动时间</div>
+            </div>
+            <div class="table-body">
+              <div class="table-body-r" v-for="item in 6" :key="item">
+                <div class="table-item">黄山善</div>
+                <div class="table-item">100</div>
+                <div class="table-item">184</div>
+                <div class="table-item">89</div>
+                <div class="table-item">6</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chart-wrapper">
+          <p class="title">激励运用</p>
+          <div class="chart-container swipper-container">
+            <mySwiper :list="[{}, {}, {}]" />
           </div>
         </div>
       </div>
@@ -214,7 +238,6 @@ export default {
         yAxis: {
           type: "value",
         },
-
         series: [
           {
             data: [120, 200, 150, 80, 70],
@@ -225,11 +248,11 @@ export default {
                 color: function (params) {
                   //注意，如果颜色太少的话，后面颜色不会自动循环，最好多定义几个颜色
                   var colorList = [
-                    "red",
-                    "#F2A01D",
-                    "#FF1A1A",
-                    "#F2A01D",
-                    "#FF1A1A",
+                    "#FF6600",
+                    "#174DF9",
+                    "#E4BB18",
+                    "#A247FF",
+                    "#4CC330",
                   ];
                   return colorList[params.dataIndex];
                 },
