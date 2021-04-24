@@ -3,22 +3,41 @@
     <home-header></home-header>
     <div class="main-wrapper">
       <div class="left-container">
-        <div class="chart-wrapper">
+        <div class="chart-wrapper bg-1">
           <p class="title">公望美好家庭指数标准</p>
           <div class="chart-container">
-            <myChart :options="pieOptionsFir" />
+            <myChart :options="pieOptionsSec" />
           </div>
         </div>
-        <div class="chart-wrapper">
+        <div class="chart-wrapper bg-2">
           <p class="title">公望美好家庭指数分布图</p>
           <div class="chart-container">
             <myChart :options="pieOptionsSec" />
           </div>
         </div>
-        <div class="chart-wrapper volunteer-wrapper">
+        <div class="chart-wrapper bg-3 volunteer-wrapper">
           <p class="title">公望美好家庭指数</p>
-          <div class="chart-container">
-            <myChart :options="lineOption" />
+          <div class="table-wrapper">
+            <div class="table-header">
+              <div class="table-item">村庄</div>
+              <div class="table-item">门牌号</div>
+              <div class="table-item">志愿活动</div>
+              <div class="table-item">积分</div>
+              <div class="table-item">时间</div>
+            </div>
+            <div class="table-body">
+              <div class="table-body-r" v-for="item in 6" :key="item">
+                <div class="table-item">黄山善</div>
+                <div class="table-item">100</div>
+                <div class="table-item">184</div>
+                <div class="table-item">89</div>
+                <div class="table-item">6</div>
+                <div class="table-item">100</div>
+                <div class="table-item">184</div>
+                <div class="table-item">89</div>
+                <div class="table-item">6</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -39,12 +58,33 @@
             </div>
           </div>
         </div>
-        <div class="chart-wrapper volunteer-wrapper">
+        <div class="chart-wrapper bg-4 volunteer-wrapper">
           <p class="title">实时垃圾分类数据</p>
+          <div class="change-wrapper">
+            <div class="chart-container">
+              <myChart :options="barOptionsSec" />
+            </div>
+            <div class="table-wrapper">
+              <div class="table-header">
+                <div class="table-item">村庄</div>
+                <div class="table-item">村民</div>
+                <div class="table-item">合格天数</div>
+                <div class="table-item">合格率</div>
+              </div>
+              <div class="table-body">
+                <div class="table-body-r" v-for="item in 6" :key="item">
+                  <div class="table-item">黄山善</div>
+                  <div class="table-item">100</div>
+                  <div class="table-item">184</div>
+                  <div class="table-item">89</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="right-container">
-        <div class="chart-wrapper">
+        <div class="chart-wrapper bg-5">
           <p class="title">激励运用</p>
           <div class="table-wrapper">
             <div class="table-header">
@@ -69,13 +109,13 @@
             </div>
           </div>
         </div>
-        <div class="chart-wrapper volunteer-wrapper">
+        <div class="chart-wrapper bg-6 volunteer-wrapper">
           <p class="title">平安家庭</p>
           <div class="chart-container">
             <myChart :options="barOptionsFir" />
           </div>
         </div>
-        <div class="chart-wrapper">
+        <div class="chart-wrapper bg-7">
           <p class="title">激励运用</p>
           <div class="table-wrapper">
             <div class="table-header">
@@ -218,6 +258,9 @@ export default {
             lineStyle: { color: "rgba(255,255,255,0.4)" },
           },
         },
+        grid: {
+          bottom: 20,
+        },
         series: [
           {
             data: [820, 932, 901, 934, 1290, 1330, 1320, 901, 934, 1290],
@@ -303,86 +346,149 @@ export default {
         ],
       },
       barOptionsSec: {
-        xAxis: {
-          type: "category",
-          data: ["1月", "2月", "3月", "4月"],
-          axisLine: {
-            lineStyle: { color: "#fff" },
+        grid: {
+          bottom: 20,
+          left: 60,
+          width: "75%",
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "cross",
+            crossStyle: {
+              color: "#999",
+            },
           },
         },
-        yAxis: {
-          type: "value",
-          axisLine: {
-            show: true,
-            lineStyle: { color: "rgba(255,255,255,0.4)" },
-          },
-          //  splitLine:{show:false}
-        },
-        title: {
-          text: "单位(人):元）",
-          right: 22,
-          top: 10,
+        legend: {
+          data: [
+            "易腐垃圾重量",
+            "其他垃圾重量",
+            "易腐垃圾收集率",
+            "其他垃圾收集率",
+          ],
           textStyle: {
             color: "#fff",
-            fontSize: 14,
+            fontSize: 10,
           },
         },
-        grid: {
-          right: "40",
-          bottom: "40",
-          show: true,
-        },
+        xAxis: [
+          {
+            type: "category",
+            data: [
+              "1月",
+              "2月",
+              "3月",
+              "4月",
+              "5月",
+              "6月",
+              "7月",
+              "8月",
+              "9月",
+              "10月",
+              "11月",
+              "12月",
+            ],
+            axisPointer: {
+              type: "shadow",
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: "value",
+            name: "重量(kg)",
+            min: 0,
+            max: 250,
+            interval: 50,
+            axisLabel: {
+              formatter: "{value} ml",
+            },
+          },
+          {
+            type: "value",
+            name: "收集率",
+            min: 0,
+            max: 25,
+            interval: 5,
+            axisLabel: {
+              formatter: "{value}%",
+            },
+          },
+        ],
         series: [
           {
-            data: [120, 180, 150, 80],
+            name: "易腐垃圾重量",
             type: "bar",
-            itemStyle: {
-              normal: {
-                //这里是重点
-                color: "#12B00A",
-              },
-            },
-            barWidth: 20,
-            label: {
-              show: true,
-              color: "#fff",
-              position: "top",
-            },
-            name: "绿码户",
+            data: [
+              2.0,
+              4.9,
+              7.0,
+              23.2,
+              25.6,
+              76.7,
+              135.6,
+              162.2,
+              32.6,
+              20.0,
+              6.4,
+              3.3,
+            ],
           },
           {
-            data: [110, 280, 120, 89],
+            name: "其他垃圾重量",
             type: "bar",
-            itemStyle: {
-              normal: {
-                //这里是重点
-                color: "#FDA11E",
-              },
-            },
-            barWidth: 20,
-            label: {
-              show: true,
-              color: "#fff",
-              position: "top",
-            },
-            name: "黄码户",
+            data: [
+              2.6,
+              5.9,
+              9.0,
+              26.4,
+              28.7,
+              70.7,
+              175.6,
+              182.2,
+              48.7,
+              18.8,
+              6.0,
+              2.3,
+            ],
           },
           {
-            data: [140, 240, 90, 120],
-            type: "bar",
-            itemStyle: {
-              normal: {
-                //这里是重点
-                color: "#FD3D1E",
-              },
-            },
-            barWidth: 20,
-            label: {
-              show: true,
-              color: "#fff",
-              position: "top",
-            },
-            name: "红码户",
+            name: "易腐垃圾收集率",
+            type: "line",
+            yAxisIndex: 1,
+            data: [
+              2.0,
+              2.2,
+              3.3,
+              4.5,
+              6.3,
+              10.2,
+              20.3,
+              23.4,
+              23.0,
+              16.5,
+              12.0,
+              6.2,
+            ],
+          },
+          {
+            name: "其他垃圾收集率",
+            type: "line",
+            data: [
+              3.0,
+              2.2,
+              3.8,
+              4.5,
+              6.3,
+              10.1,
+              20.3,
+              21.3,
+              23.0,
+              12.4,
+              9.3,
+              6.2,
+            ],
           },
         ],
       },
@@ -398,6 +504,7 @@ export default {
       const map = new AMap.Map(container, {
         center: [117.000923, 36.675807],
         zoom: 5,
+        defaultType:1
       });
       // 往地图里加入更多元素（如点标记）
       const marker = new AMap.Marker({
@@ -429,23 +536,30 @@ export default {
     padding-top: 20px;
     .chart-wrapper {
       width: 100%;
-      height: 314px;
-      margin-bottom: 2px;
+
       background-size: 100% 100%;
-      background-image: url("~@/images/chart-bg.png");
+
       .title {
         text-align: center;
-        padding: 19px;
-        font-size: 20px;
+        padding-top: 14px;
+        font-size: 16px;
         height: 50px;
         font-family: PingFang;
         font-weight: bold;
         color: #ffffff;
-        line-height: 20px;
         text-shadow: 0px 11px 16px #3957a3;
       }
+      .change-wrapper {
+        display: flex;
+        width: 100%;
+
+        .chart-container,
+        .table-wrapper {
+          width: 50%;
+        }
+      }
       .chart-container {
-        height: calc(100% - 50px);
+        height: 270px;
       }
       .swipper-item {
         width: 100%;
@@ -453,12 +567,45 @@ export default {
         background-color: pink;
       }
     }
+    .bg-1 {
+      background-image: url("~@/images/bg-1.png");
+      height: 314px;
+      margin-bottom: 3px;
+    }
+    .bg-2 {
+      background-image: url("~@/images/bg-2.png");
+      height: 320px;
+      margin-bottom: 3px;
+    }
+    .bg-3 {
+      background-image: url("~@/images/bg-3.png");
+      height: 314px;
+    }
+    .bg-4 {
+      background-image: url("~@/images/bg-4.png");
+      height: 314px;
+    }
+    .bg-5 {
+      overflow: hidden;
+      background-image: url("~@/images/bg-5.png");
+      height: 302px;
+      margin-bottom: 4px;
+    }
+    .bg-6 {
+      background-image: url("~@/images/bg-6.png");
+      height: 334px;
+      margin-bottom: 4px;
+    }
+    .bg-7 {
+      background-image: url("~@/images/bg-7.png");
+      height: 330px;
+    }
     .volunteer-wrapper {
       height: 330px;
     }
     .table-wrapper {
       width: 100%;
-      padding: 10px 14px;
+      padding: 5px 14px;
 
       .table-header,
       .table-body-r {
@@ -468,7 +615,7 @@ export default {
           flex: 1;
           text-align: center;
           font-size: 14px;
-          line-height: 40px;
+          line-height: 38px;
           font-family: PingFang;
           font-weight: bold;
           color: #ffffff;
@@ -480,7 +627,7 @@ export default {
       }
       .table-header {
         background: #1b5ad1;
-        height: 40px;
+        height: 38px;
       }
       .table-body-r {
         height: 36px;
@@ -490,17 +637,20 @@ export default {
           font-weight: normal;
         }
       }
+      & .table-body-r:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
     }
     .left-container {
-      width: 486px;
+      width: 484px;
     }
     .center-container {
-      width: 913px;
+      width: 920px;
       margin: 0 3px;
       .map-wrapper {
         width: 100%;
-        height: 620px;
-        margin-bottom: 10px;
+        height: 632px;
+        margin-bottom: 8px;
         position: relative;
 
         .map-opreate {

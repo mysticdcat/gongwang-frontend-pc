@@ -3,15 +3,15 @@
     <home-header></home-header>
     <div class="main-wrapper">
       <div class="left-container">
-        <div class="chart-wrapper">
+        <div class="chart-wrapper bg-1">
           <p class="title">平安家庭</p>
           <div class="chart-container"><myChart :options="pieOptions" /></div>
         </div>
-        <div class="chart-wrapper">
+        <div class="chart-wrapper bg-2">
           <p class="title">美丽庭院</p>
           <div class="chart-container"><myChart :options="lineOption" /></div>
         </div>
-        <div class="chart-wrapper volunteer-wrapper">
+        <div class="chart-wrapper bg-3 volunteer-wrapper">
           <p class="title">志愿</p>
           <div class="table-wrapper">
             <div class="table-header">
@@ -48,9 +48,9 @@
             </div>
           </div>
         </div>
-        <div class="chart-wrapper volunteer-wrapper">
+        <div class="chart-wrapper bg-4 volunteer-wrapper">
           <p class="title">实时垃圾分类数据</p>
-          <div class="table-wrapper">
+          <div class="table-wrapper ">
             <div class="table-header">
               <div class="table-item">村庄</div>
               <div class="table-item">门牌号</div>
@@ -79,11 +79,11 @@
         </div>
       </div>
       <div class="right-container">
-        <div class="chart-wrapper">
+        <div class="chart-wrapper bg-5">
           <p class="title">激励运用</p>
           <div class="chart-container"><myChart :options="barOptions" /></div>
         </div>
-        <div class="chart-wrapper volunteer-wrapper">
+        <div class="chart-wrapper bg-6 volunteer-wrapper">
           <p class="title">党员引领</p>
           <div class="table-wrapper">
             <div class="table-header">
@@ -104,7 +104,7 @@
             </div>
           </div>
         </div>
-        <div class="chart-wrapper">
+        <div class="chart-wrapper bg-7">
           <p class="title">激励运用</p>
           <div class="chart-container swipper-container">
             <mySwiper :list="[{}, {}, {}]" />
@@ -321,27 +321,38 @@ export default {
   width: 1920px;
   background-size: 100% 100%;
   background-image: url("~@/images/home-bg.png");
-
+  .header-wrapper {
+    height: 86px;
+    width: 100%;
+    background-size: 100% 100%;
+    background-image: url("~@/images/header-bg.png");
+  }
   .main-wrapper {
     display: flex;
     justify-content: center;
     padding-top: 20px;
     .chart-wrapper {
       width: 100%;
-      height: 314px;
-      margin-bottom: 2px;
+
       background-size: 100% 100%;
-      background-image: url("~@/images/chart-bg.png");
+
       .title {
         text-align: center;
-        padding: 19px;
-        font-size: 20px;
+        padding-top: 14px;
+        font-size: 16px;
         height: 50px;
         font-family: PingFang;
         font-weight: bold;
         color: #ffffff;
-        line-height: 20px;
         text-shadow: 0px 11px 16px #3957a3;
+      }
+      .change-wrapper {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        .chart-container,.table-wrapper {
+          width: 50%;
+        }
       }
       .chart-container {
         height: calc(100% - 50px);
@@ -352,12 +363,45 @@ export default {
         background-color: pink;
       }
     }
+    .bg-1 {
+      background-image: url("~@/images/bg-1.png");
+      height: 314px;
+      margin-bottom: 3px;
+    }
+    .bg-2 {
+      background-image: url("~@/images/bg-2.png");
+      height: 320px;
+      margin-bottom: 3px;
+    }
+    .bg-3 {
+      background-image: url("~@/images/bg-3.png");
+      height: 314px;
+    }
+    .bg-4 {
+      background-image: url("~@/images/bg-4.png");
+      height: 314px;
+    }
+    .bg-5 {
+      overflow: hidden;
+      background-image: url("~@/images/bg-5.png");
+      height: 302px;
+      margin-bottom: 4px;
+    }
+    .bg-6 {
+      background-image: url("~@/images/bg-6.png");
+      height: 334px;
+      margin-bottom: 4px;
+    }
+    .bg-7 {
+      background-image: url("~@/images/bg-7.png");
+      height: 330px;
+    }
     .volunteer-wrapper {
       height: 330px;
     }
     .table-wrapper {
       width: 100%;
-      padding: 10px 14px;
+      padding: 5px 14px;
 
       .table-header,
       .table-body-r {
@@ -367,7 +411,7 @@ export default {
           flex: 1;
           text-align: center;
           font-size: 14px;
-          line-height: 40px;
+          line-height: 38px;
           font-family: PingFang;
           font-weight: bold;
           color: #ffffff;
@@ -379,7 +423,7 @@ export default {
       }
       .table-header {
         background: #1b5ad1;
-        height: 40px;
+        height: 38px;
       }
       .table-body-r {
         height: 36px;
@@ -389,17 +433,20 @@ export default {
           font-weight: normal;
         }
       }
+      & .table-body-r:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
     }
     .left-container {
-      width: 486px;
+      width: 484px;
     }
     .center-container {
-      width: 913px;
+      width: 920px;
       margin: 0 3px;
       .map-wrapper {
         width: 100%;
-        height: 620px;
-        margin-bottom: 10px;
+        height: 632px;
+        margin-bottom: 8px;
         position: relative;
 
         .map-opreate {
