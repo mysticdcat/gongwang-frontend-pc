@@ -4,30 +4,21 @@
     <div class="main-wrapper">
       <div class="left-container">
         <div class="chart-wrapper">
-          <p class="title">平安家庭</p>
-          <div class="chart-container"><myChart :options="barOptions" /></div>
+          <p class="title">公望美好家庭指数标准</p>
+          <div class="chart-container">
+            <myChart :options="pieOptionsFir" />
+          </div>
         </div>
         <div class="chart-wrapper">
-          <p class="title">美丽庭院</p>
-          <div class="chart-container"><myChart :options="lineOption" /></div>
+          <p class="title">公望美好家庭指数分布图</p>
+          <div class="chart-container">
+            <myChart :options="pieOptionsSec" />
+          </div>
         </div>
         <div class="chart-wrapper volunteer-wrapper">
-          <p class="title">志愿</p>
-          <div class="table-wrapper">
-            <div class="table-header">
-              <div class="table-item">村民</div>
-              <div class="table-item">活动名称</div>
-              <div class="table-item">获得积分</div>
-              <div class="table-item">活动时间</div>
-            </div>
-            <div class="table-body">
-              <div class="table-body-r" v-for="item in 6" :key="item">
-                <div class="table-item">王得按</div>
-                <div class="table-item">垃圾环境治理垃圾环境治理</div>
-                <div class="table-item">56</div>
-                <div class="table-item">2021.04.02</div>
-              </div>
-            </div>
+          <p class="title">公望美好家庭指数</p>
+          <div class="chart-container">
+            <myChart :options="lineOption" />
           </div>
         </div>
       </div>
@@ -55,11 +46,34 @@
       <div class="right-container">
         <div class="chart-wrapper">
           <p class="title">激励运用</p>
-          <div class="chart-container"><myChart :options="barOptions" /></div>
+          <div class="table-wrapper">
+            <div class="table-header">
+              <div class="table-item">村庄</div>
+              <div class="table-item">门牌号</div>
+              <div class="table-item">志愿活动</div>
+              <div class="table-item">积分</div>
+              <div class="table-item">时间</div>
+            </div>
+            <div class="table-body">
+              <div class="table-body-r" v-for="item in 6" :key="item">
+                <div class="table-item">黄山善</div>
+                <div class="table-item">100</div>
+                <div class="table-item">184</div>
+                <div class="table-item">89</div>
+                <div class="table-item">6</div>
+                <div class="table-item">100</div>
+                <div class="table-item">184</div>
+                <div class="table-item">89</div>
+                <div class="table-item">6</div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="chart-wrapper volunteer-wrapper">
-          <p class="title">党员引领</p>
-          <div class="chart-container"><myChart :options="barOptions" /></div>
+          <p class="title">平安家庭</p>
+          <div class="chart-container">
+            <myChart :options="barOptionsFir" />
+          </div>
         </div>
         <div class="chart-wrapper">
           <p class="title">激励运用</p>
@@ -93,13 +107,13 @@
 <script>
 import myChart from "components/my-chart/index";
 import mySwiper from "components/my-swiper/index";
-import homeHeader from "./components/home-header"
+import homeHeader from "./components/home-header";
 export default {
   name: "hello",
   components: {
     myChart,
     mySwiper,
-    homeHeader
+    homeHeader,
   },
   data() {
     return {
@@ -108,134 +122,267 @@ export default {
         autoplay: 3000,
         speed: 1000,
       },
-      pieOptions: {
-        tooltip: {
-          trigger: "item",
-        },
+      pieOptionsFir: {
+        color: ["#4CC330", "#F2A01D", "#FF1A1A"],
         legend: {
-          right: "40",
-          bottom: "60",
+          right: 10,
+          top: "center",
           orient: "vertical",
-          itemWidth: 26,
-          itemHeight: 8,
+          itemWidth: 12,
+          itemHeight: 12,
           textStyle: {
-            color: "#FFFFFF",
-            fontSize: 12,
+            color: "#fff",
           },
-          itemGap: 24,
         },
-        dataIndex: 1,
         series: [
           {
             type: "pie",
-            radius: ["40%", "70%"],
-            avoidLabelOverlap: false,
-            label: {
-              show: true,
-              position: "center",
-            },
-            emphasis: {
-              label: {
-                show: true,
-                fontSize: "16",
-                fontWeight: "bold",
-                formatter: function (params) {
-                  console.log(params);
-                  let str =
-                    '<div class="showBox">' + params.data.name + "</div>";
-                  return str;
-                },
-              },
-            },
+            data: [{ value: 1048, name: "美好指数" }],
             labelLine: {
               show: false,
             },
+          },
+          // {
+          //   name: "电商直达",
+          //   type: "pie",
+          //   radius: [40, 100],
+          //   center: ["39%", "50%"],
+          //   roseType: "area",
+          //   itemStyle: {
+          //     borderRadius: 0,
+          //   },
+          //   label: {
+          //     show: false,
+          //   },
+          //   data: [
+          //     { value: 1048, name: "绿码用户" },
+          //     { value: 735, name: "黄码用户" },
+          //     { value: 580, name: "红码用户" },
+          //   ],
+          // },
+        ],
+      },
+      pieOptionsSec: {
+        color: ["#33A5F8", "#3AB71C", "#5DF4C1", "#F7A35C", "#FF6A6A"],
+        legend: {
+          right: 10,
+          top: "center",
+          orient: "vertical",
+          itemWidth: 12,
+          itemHeight: 12,
+          textStyle: {
+            color: "#fff",
+          },
+        },
+        series: [
+          {
+            bottom: 20,
+            type: "pie",
+            name: "电商直达",
+
+            radius: [40, 100],
+            center: ["39%", "50%"],
+            roseType: "area",
+            itemStyle: {
+              borderRadius: 0,
+            },
+            label: {
+              show: true,
+              formatter: "{c}户\n{d}%",
+              align: "center",
+            },
             data: [
-              { value: 1048, name: "绿码用户" },
-              { value: 735, name: "黄码用户" },
-              { value: 580, name: "红码用户" },
+              { value: 848, name: "五星用户", label: { color: "#33A5F8" } },
+              { value: 735, name: "四星用户", label: { color: "#3AB71C" } },
+              { value: 580, name: "三星用户", label: { color: "#5DF4C1" } },
+              { value: 580, name: "二星用户", label: { color: "#F7A35C" } },
+              { value: 580, name: "一星用户", label: { color: "#FF6A6A" } },
             ],
           },
         ],
-        color: ["#4CC330", "#F2A01D", "#FF1A1A"],
       },
       lineOption: {
-        color: ["#4CC330", "#F2A01D", "#FF1A1A"],
-        tooltip: {
-          trigger: "axis",
-        },
-        legend: {
-          data: ["绿码用户", "黄码用户", "红码用户"],
-          top: 5,
-          textStyle: {
-            color: "#FFFFFF",
-            fontSize: 12,
-          },
-        },
-        grid: {
-          left: "3%",
-          right: "4%",
-          bottom: "3%",
-          containLabel: true,
-        },
         xAxis: {
           type: "category",
           boundaryGap: false,
-          data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月"],
+          data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月"],
+          axisLine: {
+            show: true,
+            lineStyle: { color: "rgba(255,255,255,1)" },
+          },
         },
         yAxis: {
           type: "value",
+          axisLine: {
+            show: true,
+            lineStyle: { color: "rgba(255,255,255,0.4)" },
+          },
         },
         series: [
           {
-            name: "绿码用户",
+            data: [820, 932, 901, 934, 1290, 1330, 1320, 901, 934, 1290],
             type: "line",
-            stack: "总量",
-            data: [120, 132, 101, 134, 90, 230, 210, 132],
-          },
-          {
-            name: "黄码用户",
-            type: "line",
-            stack: "总量",
-            data: [220, 182, 191, 234, 290, 330, 310, 132],
-          },
-          {
-            name: "红码用户",
-            type: "line",
-            stack: "总量",
-            data: [150, 232, 201, 154, 190, 330, 410, 132],
+            areaStyle: {},
           },
         ],
       },
-      barOptions: {
+      barOptionsFir: {
+        color: ["#4CC330", "#F2A01D", "#FF1A1A"],
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            // Use axis to trigger tooltip
+            type: "shadow", // 'shadow' as default; can also be 'line' or 'shadow'
+          },
+        },
+        legend: {
+          data: ["绿码户", "黄码户", "红码户"],
+          textStyle: {
+            color: "#fff",
+          },
+          top: 20,
+        },
+        grid: {
+          left: "25",
+          bottom: "20",
+          containLabel: true,
+        },
+        xAxis: {
+          type: "value",
+          axisLabel: {
+            formatter: "{value}%",
+          },
+          axisLine: {
+            show: true,
+            lineStyle: { color: "rgba(255,255,255,1)" },
+          },
+        },
+        yAxis: {
+          type: "category",
+          axisLine: {
+            show: true,
+            lineStyle: { color: "rgba(255,255,255,1)" },
+          },
+          data: [
+            "木头桥村",
+            "新沙村",
+            "富春江村",
+            "黄公望村",
+            "紫铜村",
+            "东洲村",
+          ],
+        },
+        series: [
+          {
+            name: "绿码户",
+            type: "bar",
+            stack: "total",
+            label: {
+              show: true,
+            },
+            data: [320, 302, 301, 334, 390, 330],
+          },
+          {
+            name: "黄码户",
+            type: "bar",
+            stack: "total",
+            label: {
+              show: true,
+            },
+            data: [120, 132, 101, 134, 90, 230],
+          },
+          {
+            name: "红码户",
+            type: "bar",
+            stack: "total",
+            label: {
+              show: true,
+            },
+            data: [220, 182, 191, 234, 290, 330],
+          },
+        ],
+      },
+      barOptionsSec: {
         xAxis: {
           type: "category",
-          data: ["表彰", "信用贷", "奖金", "补偿", "其他"],
+          data: ["1月", "2月", "3月", "4月"],
+          axisLine: {
+            lineStyle: { color: "#fff" },
+          },
         },
         yAxis: {
           type: "value",
+          axisLine: {
+            show: true,
+            lineStyle: { color: "rgba(255,255,255,0.4)" },
+          },
+          //  splitLine:{show:false}
         },
-
+        title: {
+          text: "单位(人):元）",
+          right: 22,
+          top: 10,
+          textStyle: {
+            color: "#fff",
+            fontSize: 14,
+          },
+        },
+        grid: {
+          right: "40",
+          bottom: "40",
+          show: true,
+        },
         series: [
           {
-            data: [120, 200, 150, 80, 70],
+            data: [120, 180, 150, 80],
             type: "bar",
             itemStyle: {
               normal: {
                 //这里是重点
-                color: function (params) {
-                  //注意，如果颜色太少的话，后面颜色不会自动循环，最好多定义几个颜色
-                  var colorList = [
-                    "red",
-                    "#F2A01D",
-                    "#FF1A1A",
-                    "#F2A01D",
-                    "#FF1A1A",
-                  ];
-                  return colorList[params.dataIndex];
-                },
+                color: "#12B00A",
               },
             },
+            barWidth: 20,
+            label: {
+              show: true,
+              color: "#fff",
+              position: "top",
+            },
+            name: "绿码户",
+          },
+          {
+            data: [110, 280, 120, 89],
+            type: "bar",
+            itemStyle: {
+              normal: {
+                //这里是重点
+                color: "#FDA11E",
+              },
+            },
+            barWidth: 20,
+            label: {
+              show: true,
+              color: "#fff",
+              position: "top",
+            },
+            name: "黄码户",
+          },
+          {
+            data: [140, 240, 90, 120],
+            type: "bar",
+            itemStyle: {
+              normal: {
+                //这里是重点
+                color: "#FD3D1E",
+              },
+            },
+            barWidth: 20,
+            label: {
+              show: true,
+              color: "#fff",
+              position: "top",
+            },
+            name: "红码户",
           },
         ],
       },

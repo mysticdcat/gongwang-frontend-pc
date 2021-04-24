@@ -88,10 +88,10 @@
           <div class="table-wrapper">
             <div class="table-header">
               <div class="table-item">党员名</div>
-              <div class="table-item">活动名称</div>
-              <div class="table-item">获得积分</div>
-              <div class="table-item">活动时间</div>
-              <div class="table-item">活动时间</div>
+              <div class="table-item">平安家庭</div>
+              <div class="table-item">美好家庭</div>
+              <div class="table-item">垃圾分类</div>
+              <div class="table-item">联系户</div>
             </div>
             <div class="table-body">
               <div class="table-body-r" v-for="item in 6" :key="item">
@@ -117,13 +117,13 @@
 <script>
 import myChart from "components/my-chart/index";
 import mySwiper from "components/my-swiper/index";
-import homeHeader from "./components/home-header"
+import homeHeader from "./components/home-header";
 export default {
   name: "hello",
   components: {
     myChart,
     mySwiper,
-    homeHeader
+    homeHeader,
   },
   data() {
     return {
@@ -133,45 +133,32 @@ export default {
         speed: 1000,
       },
       pieOptions: {
+        color: ["#4CC330", "#F2A01D", "#FF1A1A"],
+        legend: {
+          right: 10,
+          top: "center",
+          orient: "vertical",
+          itemWidth: 12,
+          itemHeight: 12,
+          textStyle: {
+            color: "#fff",
+          },
+        },
         tooltip: {
           trigger: "item",
+          formatter: "{b} : {c} ({d}%)",
         },
-        legend: {
-          right: "40",
-          bottom: "60",
-          orient: "vertical",
-          itemWidth: 26,
-          itemHeight: 8,
-          textStyle: {
-            color: "#FFFFFF",
-            fontSize: 12,
-          },
-          itemGap: 24,
-        },
-        dataIndex: 1,
         series: [
           {
+            name: "电商直达",
             type: "pie",
-            radius: ["40%", "70%"],
-            avoidLabelOverlap: false,
+            radius: [40, 100],
+            center: ["39%", "50%"],
+            roseType: "area",
+            itemStyle: {
+              borderRadius: 0,
+            },
             label: {
-              show: true,
-              position: "center",
-            },
-            emphasis: {
-              label: {
-                show: true,
-                fontSize: "16",
-                fontWeight: "bold",
-                formatter: function (params) {
-                  console.log(params);
-                  let str =
-                    '<div class="showBox">' + params.data.name + "</div>";
-                  return str;
-                },
-              },
-            },
-            labelLine: {
               show: false,
             },
             data: [
@@ -181,9 +168,17 @@ export default {
             ],
           },
         ],
-        color: ["#4CC330", "#F2A01D", "#FF1A1A"],
       },
       lineOption: {
+          title: {
+          text: "人数",
+          left: 22,
+          top: 10,
+          textStyle: {
+            color: "rgba(255,255,255,0.4)",
+            fontSize: 12,
+          },
+        },
         color: ["#4CC330", "#F2A01D", "#FF1A1A"],
         tooltip: {
           trigger: "axis",
@@ -197,17 +192,22 @@ export default {
           },
         },
         grid: {
-          left: "3%",
-          right: "4%",
-          bottom: "3%",
+          left: "27",
+          bottom: "21",
           containLabel: true,
         },
         xAxis: {
+          axisLine: {
+            lineStyle: { color: "#fff" },
+          },
           type: "category",
           boundaryGap: false,
           data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月"],
         },
         yAxis: {
+          axisLine: {
+            lineStyle: { color: "rgba(255,255,255,0.4)" },
+          },
           type: "value",
         },
         series: [
@@ -235,13 +235,35 @@ export default {
         xAxis: {
           type: "category",
           data: ["表彰", "信用贷", "奖金", "补偿", "其他"],
+          axisLine: {
+            lineStyle: { color: "#fff" },
+          },
         },
         yAxis: {
           type: "value",
+          axisLine: {
+            show: true,
+            lineStyle: { color: "rgba(255,255,255,0.4)" },
+          },
+          //  splitLine:{show:false}
+        },
+        title: {
+          text: "单位(人):元）",
+          right: 22,
+          top: 10,
+          textStyle: {
+            color: "#fff",
+            fontSize: 14,
+          },
+        },
+        grid: {
+          right: "40",
+          bottom: "40",
+          show: true,
         },
         series: [
           {
-            data: [120, 200, 150, 80, 70],
+            data: [120, 280, 150, 80, 70],
             type: "bar",
             itemStyle: {
               normal: {
@@ -258,6 +280,12 @@ export default {
                   return colorList[params.dataIndex];
                 },
               },
+            },
+            barWidth: 43,
+            label: {
+              show: true,
+              color: "#fff",
+              position: "top",
             },
           },
         ],
